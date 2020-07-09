@@ -8,21 +8,21 @@ import Icon from "./Icon";
 //hot weather 12-40 hues of red
 //cold -20 and 12 hues of blue
 
-const WeatherCard = (props) => {
+const WeatherCard = ({ temp, condition, city, country }) => {
   let hightColor = 0;
   let lowColor = 0;
   let bg = null;
 
-  if (props.temp > 12) {
-    hightColor = (1 - (props.temp - 12) / 28) * 255;
+  if (temp > 12) {
+    hightColor = (1 - (temp - 12) / 28) * 255;
     lowColor = hightColor - 150;
     bg = `linear-gradient(
       to top,
       rgb(255, ${hightColor}, 0),
       rgb(255, ${lowColor}, 0)
       )`;
-  } else if (props.temp <= 12) {
-    hightColor = (1 - (props.temp + 20) / 32) * 255;
+  } else if (temp <= 12) {
+    hightColor = (1 - (temp + 20) / 32) * 255;
     lowColor = hightColor - 150;
     bg = `linear-gradient(
       to top,
@@ -45,9 +45,9 @@ const WeatherCard = (props) => {
 
   return (
     <Card>
-      <Location />
-      <Icon />
-      <Condition />
+      <Location city={city} country={country} />
+      <Icon condition={condition} />
+      <Condition temp={temp} condition={condition} />
     </Card>
   );
 };
